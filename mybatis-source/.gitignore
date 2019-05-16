@@ -32,3 +32,4 @@ mvnw
 .idea/
 .mvn/
 .vscode
+bin/

@@ -1,4 +1,4 @@
-package com.aizain.jhome.mybatis.source;
+package com.aizain.jhome.mybatis.source.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
