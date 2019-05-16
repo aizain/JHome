@@ -10,5 +10,6 @@ Java family application
 
 - framework
   - spring boot 2.x
+  - mybatis 3.x
 - middleware
   - mysql
