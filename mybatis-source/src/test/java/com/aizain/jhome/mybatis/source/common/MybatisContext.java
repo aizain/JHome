@@ -2,8 +2,10 @@ package com.aizain.jhome.mybatis.source.common;
 
 import com.aizain.jhome.mybatis.source.po.User;
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +26,7 @@ public class MybatisContext {
     private static final String CONFIG = "mybatis-config.xml";
     public static final SqlSessionFactory sqlSessionFactory = createSqlSessionFactory();
 
-    public static User createUser() {
+    private static User createUser() {
         User user = new User();
         user.setName(NEW_USER_NAME);
         user.setCreateTime(LocalDateTime.now());
@@ -32,11 +34,11 @@ public class MybatisContext {
         return user;
     }
 
-    public static SqlSessionFactory createSqlSessionFactory() {
+    private static SqlSessionFactory createSqlSessionFactory() {
         try (InputStream inputStream = Resources.getResourceAsStream(CONFIG)) {
             return new SqlSessionFactoryBuilder().build(inputStream);
         } catch (IOException e) {
-            return null;
+            return new DefaultSqlSessionFactory(new Configuration());
         }
     }
 
