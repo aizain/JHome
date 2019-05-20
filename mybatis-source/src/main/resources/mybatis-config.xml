@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <!-- properties 配置 -->
     <properties resource="db.properties">
         <property name="jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
         <property name="jdbc.url" value="jdbc:mysql://localhost:3306/jhome?characterEncoding=utf-8"/>
@@ -11,10 +12,18 @@
         <property name="jdbc.password" value="123456"/>
     </properties>
 
+    <settings>
+        <setting name="logImpl" value="SLF4J"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="true"/>
+    </settings>
+
+    <!-- 别名设置 -->
     <typeAliases>
         <package name="com.aizain.jhome.mybatis.source.po"/>
     </typeAliases>
 
+    <!-- 环境配置（事务、数据源） -->
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
@@ -27,6 +36,7 @@
         </environment>
     </environments>
 
+    <!-- mapper映射文件 -->
     <mappers>
         <mapper resource="mapper/UserMapper.xml"/>
     </mappers>

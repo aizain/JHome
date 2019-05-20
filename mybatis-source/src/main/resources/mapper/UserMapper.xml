@@ -34,4 +34,56 @@
         where id = #{id}
     </update>
 
+    <resultMap id="userAliasResultMap" type="User">
+        <id column="_id" property="id"/>
+        <result column="_name" property="name"/>
+    </resultMap>
+    <select id="findUserByIdWithAlias" parameterType="int" resultMap="userAliasResultMap">
+        select id as _id, name as _name from user where id = #{id}
+    </select>
+
+    <resultMap id="userAndOrderResultMap" type="User">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <collection property="orders" ofType="Order">
+            <id column="oid" property="id"/>
+            <result column="number" property="number"/>
+            <result column="create_time" property="createTime"/>
+            <result column="update_time" property="updateTime"/>
+        </collection>
+    </resultMap>
+    <select id="findUserAndOrder" resultMap="userAndOrderResultMap">
+        select
+        u.*,
+        o.id as oid,
+        o.number,
+        o.create_time,
+        o.update_time
+        from `user` as u
+        left join `order` as o
+        on u.id = o.user_id
+    </select>
+
+    <resultMap id="orderAndUserResultMap" type="OrderWithUser">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="number" property="number"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <association column="user_id" property="user" javaType="User"
+                     select="com.aizain.jhome.mybatis.source.mapper.UserMapper.findUserById"/>
+    </resultMap>
+    <select id="findOrderAndUser" resultMap="orderAndUserResultMap">
+        select
+        o.*,
+        u.name,
+        u.create_time,
+        u.update_time
+        from `order` as o
+        join `user` as u
+        on u.id = o.user_id
+    </select>
+
 </mapper>
