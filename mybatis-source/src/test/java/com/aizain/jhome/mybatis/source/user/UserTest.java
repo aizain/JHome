@@ -1,13 +1,17 @@
 package com.aizain.jhome.mybatis.source.user;
 
 import com.aizain.jhome.mybatis.source.po.User;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
-import static com.aizain.jhome.mybatis.source.common.MybatisContext.*;
+import static com.aizain.jhome.mybatis.source.common.MybatisContext.USER_MAPPER_PATH;
+import static com.aizain.jhome.mybatis.source.common.MybatisContext.newUser;
+import static com.aizain.jhome.mybatis.source.common.MybatisContext.sqlSessionFactory;
 
 
 /**
@@ -16,6 +20,7 @@ import static com.aizain.jhome.mybatis.source.common.MybatisContext.*;
  * @author Zain
  * @date 2019-05-16
  */
+@Slf4j
 class UserTest {
 
 
@@ -37,7 +42,7 @@ class UserTest {
         Assertions.assertEquals(expected.getId(), actual.getId());
         Assertions.assertEquals(expected.getName(), actual.getName());
 
-        System.out.println(actual);
+        log.debug("Actual {}", actual.toString());
     }
 
     @Test
@@ -53,7 +58,7 @@ class UserTest {
         Assertions.assertNotNull(actual);
         Assertions.assertEquals(2, actual.size());
 
-        System.out.println(actual);
+        log.debug("Actual {}", Arrays.toString(actual.toArray()));
     }
 
     @Test
@@ -69,7 +74,7 @@ class UserTest {
         Assertions.assertNotNull(actual);
         Assertions.assertEquals(2, actual.size());
 
-        System.out.println(actual);
+        log.debug("Actual {}", Arrays.toString(actual.toArray()));
     }
 
     @Test
@@ -86,7 +91,7 @@ class UserTest {
         Assertions.assertEquals(1, actual);
         Assertions.assertNotNull(newUser.getId());
 
-        System.out.println(newUser);
+        log.debug("New user {}", newUser.toString());
     }
 
 
@@ -115,7 +120,7 @@ class UserTest {
         Assertions.assertEquals(newUser.getId(), actual.getId());
         Assertions.assertEquals(newUser.getName(), actual.getName());
 
-        System.out.println(actual);
+        log.debug("Actual {}", actual.toString());
     }
 
     @Test
@@ -135,8 +140,39 @@ class UserTest {
 
         Assertions.assertEquals(1, actual);
 
-        System.out.println(actual);
+        log.debug("Actual {}", actual);
     }
 
+    @Test
+    void testUseCache() {
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        sqlSession.selectOne(
+                USER_MAPPER_PATH + ".findUserById",
+                1
+        );
+        sqlSession.commit();
+
+        sqlSession.selectOne(
+                USER_MAPPER_PATH + ".findUserById",
+                1
+        );
+        sqlSession.selectOne(
+                USER_MAPPER_PATH + ".findUserById",
+                1
+        );
+        sqlSession.close();
+
+        sqlSession = sqlSessionFactory.openSession();
+        sqlSession.selectOne(
+                USER_MAPPER_PATH + ".findUserById",
+                1
+        );
+        sqlSession.selectOne(
+                USER_MAPPER_PATH + ".findUserById",
+                1
+        );
+
+    }
 
 }

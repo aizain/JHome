@@ -4,15 +4,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.aizain.jhome.mybatis.source.mapper.UserMapper">
 
-    <select id="findUserById" parameterType="int" resultType="com.aizain.jhome.mybatis.source.po.User">
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+    <select useCache="true" id="findUserById" parameterType="int" resultType="com.aizain.jhome.mybatis.source.po.User">
         select * from user where id = #{id}
     </select>
 
-    <select id="findUserListLikeName" parameterType="string" resultType="com.aizain.jhome.mybatis.source.po.User">
+    <select useCache="false" id="findUserListLikeName" parameterType="string"
+            resultType="com.aizain.jhome.mybatis.source.po.User">
         select * from user where name like '%${value}%'
     </select>
 
-    <select id="findUserListLikeNameSafe" parameterType="string" resultType="com.aizain.jhome.mybatis.source.po.User">
+    <select useCache="false" id="findUserListLikeNameSafe" parameterType="string"
+            resultType="com.aizain.jhome.mybatis.source.po.User">
         select * from user where name like CONCAT('%',#{name},'%')
     </select>
 
@@ -54,7 +58,7 @@
             <result column="update_time" property="updateTime"/>
         </collection>
     </resultMap>
-    <select id="findUserAndOrder" resultMap="userAndOrderResultMap">
+    <select useCache="false" id="findUserAndOrder" resultMap="userAndOrderResultMap">
         select
         u.*,
         o.id as oid,
@@ -75,7 +79,7 @@
         <association column="user_id" property="user" javaType="User"
                      select="com.aizain.jhome.mybatis.source.mapper.UserMapper.findUserById"/>
     </resultMap>
-    <select id="findOrderAndUser" resultMap="orderAndUserResultMap">
+    <select useCache="false" id="findOrderAndUser" resultMap="orderAndUserResultMap">
         select
         o.*,
         u.name,
@@ -84,6 +88,43 @@
         from `order` as o
         join `user` as u
         on u.id = o.user_id
+    </select>
+
+    <sql id="whereByVo">
+        <where>
+            <if test="user != null">
+                <if test="user.name != null and user.name != '' ">
+                    and name like CONCAT('%',#{user.name},'%')
+                </if>
+                <if test="user.id != null and user.id != '' ">
+                    and id = #{user.id}
+                </if>
+            </if>
+            <if test="ids != null and ids.size() > 0 ">
+                and id in
+                <foreach collection="ids" open="(" close=")" index="0" item="id" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <select useCache="false" id="findUserByVo" parameterType="UserQueryVo" resultType="User">
+        select * from user
+        <include refid="whereByVo"/>
+    </select>
+
+    <select useCache="false" id="countUserByVo" parameterType="UserQueryVo" resultType="int">
+        select count(*) from user
+        <include refid="whereByVo"/>
+    </select>
+
+    <select useCache="false" id="findUserByIds" parameterType="list" resultType="User">
+        select * from user
+        where id in
+        <foreach collection="list" open="(" close=")" index="0" item="id" separator=",">
+            #{id}
+        </foreach>
     </select>
 
 </mapper>

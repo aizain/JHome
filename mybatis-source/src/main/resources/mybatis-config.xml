@@ -14,13 +14,18 @@
 
     <settings>
         <setting name="logImpl" value="SLF4J"/>
+        <!-- 延迟加载 -->
         <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 深度延迟加载 -->
         <setting name="aggressiveLazyLoading" value="true"/>
+        <!-- 二级缓存 -->
+        <setting name="cacheEnabled" value="true"/>
     </settings>
 
     <!-- 别名设置 -->
     <typeAliases>
         <package name="com.aizain.jhome.mybatis.source.po"/>
+        <package name="com.aizain.jhome.mybatis.source.vo"/>
     </typeAliases>
 
     <!-- 环境配置（事务、数据源） -->

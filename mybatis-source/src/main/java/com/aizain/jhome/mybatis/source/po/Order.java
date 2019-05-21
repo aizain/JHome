@@ -2,6 +2,7 @@ package com.aizain.jhome.mybatis.source.po;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
  * @date 2019-05-18
  */
 @Data
-public class Order {
+public class Order implements Serializable {
 
     private Integer id;
     private Integer userId;

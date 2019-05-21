@@ -3,6 +3,8 @@ package com.aizain.jhome.mybatis.source.po;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+
 /**
  * OrderWithUser
  *
@@ -11,7 +13,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class OrderWithUser extends Order {
+public class OrderWithUser extends Order implements Serializable {
 
     private User user;
 

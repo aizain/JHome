@@ -2,6 +2,7 @@ package com.aizain.jhome.mybatis.source.mapper;
 
 import com.aizain.jhome.mybatis.source.po.OrderWithUser;
 import com.aizain.jhome.mybatis.source.po.User;
+import com.aizain.jhome.mybatis.source.vo.UserQueryVo;
 
 import java.util.List;
 
@@ -50,5 +51,29 @@ public interface UserMapper {
      * @return
      */
     List<OrderWithUser> findOrderAndUser();
+
+    /**
+     * 查询用户 根据查询条件
+     *
+     * @param vo
+     * @return
+     */
+    List<User> findUserByVo(UserQueryVo vo);
+
+    /**
+     * 统计用户 根据查询条件
+     *
+     * @param vo
+     * @return
+     */
+    Integer countUserByVo(UserQueryVo vo);
+
+    /**
+     * 统计用户 根据ids
+     *
+     * @param list
+     * @return
+     */
+    List<User> findUserByIds(List<Integer> list);
 
 }

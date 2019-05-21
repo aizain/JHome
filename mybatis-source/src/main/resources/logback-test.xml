@@ -9,8 +9,9 @@
     </appender>
 
     <logger name="com.aizain" level="debug"/>
+    <logger name="org.apache.ibatis" level="debug"/>
 
-    <root level="info">
+    <root level="debug">
         <appender-ref ref="STDOUT"/>
     </root>
 </configuration>
