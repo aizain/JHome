@@ -157,13 +157,14 @@ class UserMapperTest {
 
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-            List<User> orders = userMapper.findUserByIds(Arrays.asList(1, 2));
+            List<User> userList = userMapper.findUserByIds(Arrays.asList(1, 2));
 
-            Assertions.assertNotNull(orders);
-            Assertions.assertEquals(2, orders.size());
-            orders.forEach(order -> log.debug("Test {}", order.toString()));
+            Assertions.assertNotNull(userList);
+            Assertions.assertEquals(2, userList.size());
+            userList.forEach(user -> log.debug("Test {}", user.toString()));
         }
 
     }
+
 
 }

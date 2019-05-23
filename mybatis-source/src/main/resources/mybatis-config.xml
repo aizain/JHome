@@ -16,7 +16,7 @@
         <setting name="logImpl" value="SLF4J"/>
         <!-- 延迟加载 -->
         <setting name="lazyLoadingEnabled" value="true"/>
-        <!-- 深度延迟加载 -->
+        <!-- 侵入式/深度延迟加载 -->
         <setting name="aggressiveLazyLoading" value="true"/>
         <!-- 二级缓存 -->
         <setting name="cacheEnabled" value="true"/>
@@ -44,6 +44,8 @@
     <!-- mapper映射文件 -->
     <mappers>
         <mapper resource="mapper/UserMapper.xml"/>
+        <!-- 注解开发使用 -->
+        <mapper class="com.aizain.jhome.mybatis.source.mapper.UserAnnotationMapper"/>
     </mappers>
 
 </configuration>
