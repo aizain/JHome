@@ -13,6 +13,10 @@ Java application family
   - mybatis 3.x
 - middleware
   - mysql
+
+## Think
+
+- Design Patterns
   
 ## Project
 
@@ -20,3 +24,5 @@ Java application family
   - mybatis source code analysis
 - mybatis-driver
   - multiple data source driver demo
+- design-pattern
+  - oop 23 design patterns
