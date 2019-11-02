@@ -2,7 +2,8 @@ package com.aizain.jhome.computer.data.entity;
 
 /**
  * ListNode
- * <p>
+ * 链表对象
+ *
  * * Definition for singly-linked list.
  * * public class ListNode {
  * * int val;
@@ -20,6 +21,7 @@ public class ListNode {
 
     public ListNode(int x) {
         val = x;
+        next = null;
     }
 
 }

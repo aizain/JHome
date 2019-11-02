@@ -2,6 +2,9 @@ package com.aizain.jhome.computer.data.list;
 
 import com.aizain.jhome.computer.data.entity.ListNode;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * HasCycle
  * <p>
@@ -37,6 +40,28 @@ import com.aizain.jhome.computer.data.entity.ListNode;
 public class HasCycle {
 
     public boolean hasCycle(ListNode head) {
+        Set<ListNode> visited = new HashSet<>();
+        boolean contains = false;
+        while (head != null && !contains) {
+            contains = visited.contains(head);
+            visited.add(head);
+            head = head.next;
+        }
+
+        return contains;
+    }
+
+    public boolean hasCycleFastAntSlow(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && fast.next != null && slow != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                return true;
+            }
+        }
+
         return false;
     }
 
