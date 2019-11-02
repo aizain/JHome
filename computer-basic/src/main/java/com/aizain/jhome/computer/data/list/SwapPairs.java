@@ -45,6 +45,22 @@ public class SwapPairs {
         return end;
     }
 
+    public ListNode swapPairsRecursive(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode end = swapPairsRecursive(head.next.next);
+        ListNode tmp = head.next;
+        head.next = end;
+        tmp.next = head;
+
+        end = tmp;
+
+        return end;
+    }
+
+
     /**
      * Definition for singly-linked list.
      * public class ListNode {

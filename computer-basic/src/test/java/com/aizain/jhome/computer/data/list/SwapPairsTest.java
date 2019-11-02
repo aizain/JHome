@@ -26,6 +26,13 @@ class SwapPairsTest {
         log.debug("swapPairs end: {}", getPrint(endNode));
     }
 
+    @Test
+    void swapPairsRecursive() {
+        log.debug("swapPairsRecursive begin: {}", getPrint(inputNode));
+        SwapPairs.ListNode endNode = swapPairs.swapPairsRecursive(inputNode);
+        log.debug("swapPairsRecursive end: {}", getPrint(endNode));
+    }
+
     private String getPrint(SwapPairs.ListNode nodeList) {
         StringBuilder stringBuilder = new StringBuilder("[");
         SwapPairs.ListNode tmp = nodeList;
