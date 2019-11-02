@@ -1,5 +1,7 @@
 package com.aizain.jhome.computer.data.list;
 
+import com.aizain.jhome.computer.data.entity.ListNode;
+
 /**
  * ReverseList
  * 反转一个单链表。
@@ -81,23 +83,6 @@ public class ReverseList {
         head.next.next = head;
         head.next = null;
         return pre;
-    }
-
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode(int x) { val = x; }
-     * }
-     */
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 
 }

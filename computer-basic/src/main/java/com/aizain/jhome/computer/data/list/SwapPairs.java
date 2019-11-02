@@ -1,5 +1,7 @@
 package com.aizain.jhome.computer.data.list;
 
+import com.aizain.jhome.computer.data.entity.ListNode;
+
 /**
  * SwapPairs
  * 两两交换链表中的节点
@@ -61,20 +63,4 @@ public class SwapPairs {
     }
 
 
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode(int x) { val = x; }
-     * }
-     */
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 }
