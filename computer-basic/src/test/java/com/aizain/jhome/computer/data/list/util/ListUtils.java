@@ -14,6 +14,10 @@ public final class ListUtils {
     private ListUtils() {
     }
 
+    public static ListNode create(int[] val) {
+        return create(val, -1);
+    }
+
     public static ListNode create(int[] val, int cycle) {
         ListNode inputNode = null;
         ListNode tmpNode = new ListNode(-1);
