@@ -25,32 +25,29 @@ import java.util.concurrent.LinkedBlockingQueue;
  *
  * @author Zain
  * @date 2019/11/7
- * @see com.aizain.jhome.computer.data.queue.QueueByStack
- * @see com.aizain.jhome.computer.data.stack.StackByOneQueue
+ * @see com.aizain.jhome.computer.data.stack.StackByQueue
  */
-public class StackByQueue {
+public class StackByOneQueue {
 
-    private Queue<Integer> inQueue;
-    private Queue<Integer> outQueue;
+    private Queue<Integer> queue;
 
     /**
      * Initialize your data structure here.
      */
-    public StackByQueue() {
-        inQueue = new LinkedBlockingQueue<>();
-        outQueue = new LinkedBlockingQueue<>();
+    public StackByOneQueue() {
+        queue = new LinkedBlockingQueue<>();
     }
 
     /**
      * Push element x onto stack.
      */
     public void push(int x) {
-        inQueue.add(x);
-        while (!outQueue.isEmpty()) {
-            inQueue.add(outQueue.poll());
-        }
-        while (!inQueue.isEmpty()) {
-            outQueue.add(inQueue.poll());
+        int count = queue.size();
+
+        queue.add(x);
+        while (count > 0) {
+            queue.add(queue.poll());
+            count--;
         }
     }
 
@@ -58,21 +55,21 @@ public class StackByQueue {
      * Removes the element on top of the stack and returns that element.
      */
     public int pop() {
-        return outQueue.poll();
+        return queue.poll();
     }
 
     /**
      * Get the top element.
      */
     public int top() {
-        return outQueue.peek();
+        return queue.peek();
     }
 
     /**
      * Returns whether the stack is empty.
      */
     public boolean empty() {
-        return outQueue.isEmpty();
+        return queue.isEmpty();
     }
 
 }
