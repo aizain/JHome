@@ -23,7 +23,7 @@ import java.util.Map;
  * 解题：
  * 1 循环找
  * 2 减法找另一个
- * 利用hash map会更快
+ * 利用hash map/set会更快
  *
  * @author Zain
  * @date 2019/11/8
