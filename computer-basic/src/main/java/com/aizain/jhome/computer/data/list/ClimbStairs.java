@@ -54,7 +54,31 @@ public class ClimbStairs {
      */
     public int climbStairs(int n) {
         // return fiboracciSolution(n);
-        return fiboracciCacheSolution(n);
+        // return fiboracciCacheSolution(n);
+        return divideAndConquerSolution(n);
+    }
+
+    /**
+     * 分治思路
+     *
+     * @param n
+     * @return
+     */
+    private int divideAndConquerSolution(int n) {
+        // 1 终结条件
+        if (n <= 1) {
+            return 1;
+        }
+        // 2 准备数据，处理当前层
+        int f1 = n - 1;
+        int f2 = n - 2;
+        // 3 下探处理子问题
+        int f1Ret = divideAndConquerSolution(f1);
+        int f2Ret = divideAndConquerSolution(f2);
+        // 4 合并子问题结果
+        int result = f1Ret + f2Ret;
+        // 5 清理当前层
+        return result;
     }
 
     /**
