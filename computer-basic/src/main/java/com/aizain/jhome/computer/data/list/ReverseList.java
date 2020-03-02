@@ -4,6 +4,8 @@ import com.aizain.jhome.computer.data.entity.ListNode;
 
 /**
  * ReverseList
+ * 206. 反转链表
+ * <p>
  * 反转一个单链表。
  * <p>
  * 示例:
@@ -18,12 +20,81 @@ import com.aizain.jhome.computer.data.entity.ListNode;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  *
  * @author Zain
- * @date 2019/10/31
+ * @date 2019/10/31 create
+ * @date 2020/03/02 update
  */
 public class ReverseList {
 
-
+    /**
+     * 审题：
+     * 1 单链表反转
+     * 2 递归、迭代
+     *
+     * 思路：
+     * 1 递归
+     * 2 迭代
+     *
+     * 反馈：
+     * 1
+     *
+     * @param head
+     * @return
+     */
     public ListNode reverseList(ListNode head) {
+        // return traverseSolution(head);
+        return recursiveSolution(head);
+    }
+
+    /**
+     * 递归
+     * 0 ms	38.5 MB
+     * 找到结束、起始的边界来推算
+     *
+     * @param head
+     * @return
+     */
+    private ListNode recursiveSolution(ListNode head) {
+        // 1 终结条件
+        if (head == null || head.next == null) {
+            return head;
+        }
+        // 2 当前层
+        // 3 下层
+        ListNode tail = recursiveSolution(head.next);
+        // 4 清理 反转
+        head.next.next = head;
+        head.next = null;
+        return tail;
+    }
+
+    /**
+     * 迭代
+     * 找到最近重复问题 a(pre) b(head) c(head.next)
+     * 0 ms	38 MB
+     *
+     * @return
+     * @param head
+     */
+    private ListNode traverseSolution(ListNode head) {
+        ListNode pre = null;
+        while (head != null) {
+            // 简化标记abc
+            ListNode first = pre;
+            ListNode second = head;
+            ListNode third = head.next;
+
+            // 反转
+            second.next = first;
+
+            // 移动到下一阶段
+            pre = second;
+            head = third;
+        }
+        return pre;
+    }
+
+
+    public ListNode reverseList20191031(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
