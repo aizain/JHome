@@ -19,7 +19,7 @@ import com.aizain.jhome.computer.data.entity.ListNode;
  *
  * @author Zain
  * @date 2019/11/1 create
- * @date 2019/03/02 update
+ * @date 2020/03/02 update
  */
 public class SwapPairs {
 
@@ -28,7 +28,7 @@ public class SwapPairs {
      * 1 不能交换值，要节点交换
      * <p>
      * 思路：
-     * 1 迭代，最近重复问题abcd简化
+     * 1 迭代，最近重复问题abc简化
      * 2 递归
      *
      * @param head
