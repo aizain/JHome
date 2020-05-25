@@ -41,8 +41,8 @@ public class ValidPalindrome_680 {
      * @return
      */
     public boolean validPalindrome(String s) {
-        // return recursiveSolution(s);
-        // return recursivePointerSolution(s);
+        // return traverseSolution(s);
+        // return traversePointerSolution(s);
         // return pointerSkipSolution(s);
         // return divideSolution(s);
         return pointerCleanSolution(s);
@@ -174,7 +174,7 @@ public class ValidPalindrome_680 {
      * @param s
      * @return
      */
-    private boolean recursivePointerSolution(String s) {
+    private boolean traversePointerSolution(String s) {
         s = "$" + s + "$";
         for (int i = 1; i < s.length(); i++) {
             String newS = s.substring(0, i) + s.substring(i + 1);
@@ -197,7 +197,7 @@ public class ValidPalindrome_680 {
      * @param s
      * @return
      */
-    private boolean recursiveSolution(String s) {
+    private boolean traverseSolution(String s) {
         s = "$" + s + "$";
         for (int i = 1; i < s.length(); i++) {
             String newS = s.substring(0, i) + s.substring(i + 1);
