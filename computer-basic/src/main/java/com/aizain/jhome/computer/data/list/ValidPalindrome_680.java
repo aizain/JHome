@@ -43,7 +43,72 @@ public class ValidPalindrome_680 {
     public boolean validPalindrome(String s) {
         // return recursiveSolution(s);
         // return recursivePointerSolution(s);
-        return pointerSkipSolution(s);
+        // return pointerSkipSolution(s);
+        // return divideSolution(s);
+        return pointerCleanSolution(s);
+    }
+
+    /**
+     * 双指针简洁版
+     *
+     * @param s
+     * @return
+     */
+    private boolean pointerCleanSolution(String s) {
+        for (int left = 0, right = s.length() - 1; left < right; left++, right--) {
+            if (s.charAt(left) != s.charAt(right)) {
+                return isPalindrome(left + 1, right, s) || isPalindrome(left, right - 1, s);
+            }
+        }
+        return true;
+    }
+
+    private boolean isPalindrome(int left, int right, String s) {
+        for (; left < right; left++, right--) {
+            if (s.charAt(left) != s.charAt(right)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 使用递归分治思想
+     *
+     * @param s
+     * @return
+     */
+    private boolean divideSolution(String s) {
+        return divideHelper(0, s.length() - 1, 0, s) <= 1;
+    }
+
+    private int divideHelper(int first, int end, int del, String s) {
+        // 1 终结
+        if (first >= end || del > 1) {
+            return del;
+        }
+
+        // 2 本层
+        char firstS = s.charAt(first);
+        char endS = s.charAt(end);
+        // 3 下探
+
+        // 相等无需处理
+        if (firstS == endS) {
+            return divideHelper(first + 1, end - 1, del, s);
+        }
+        // 删除超过1个不用往下走了
+        if (del >= 1) {
+            return del + 1;
+        }
+        // 左边-1寻找
+        int firstDel = divideHelper(first + 1, end, del + 1, s);
+        if (firstDel <= 1) {
+            return firstDel;
+        }
+
+        // 右边-1寻找
+        return divideHelper(first, end - 1, del + 1, s);
     }
 
     /**
