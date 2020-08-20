@@ -1,6 +1,6 @@
-package com.aizain.jhome.mybatis.source.dao;
+package com.aizain.jhome.mybatis.source.app.dao;
 
-import com.aizain.jhome.mybatis.source.po.User;
+import com.aizain.jhome.mybatis.source.app.po.User;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -12,9 +12,9 @@ import org.apache.ibatis.session.SqlSessionFactory;
  */
 public class UserDaoImpl implements UserDao {
 
-    private static final String USER_MAPPER_PATH = "com.aizain.jhome.mybatis.source.mapper.UserMapper";
+    private static final String USER_MAPPER_PATH = "com.aizain.jhome.mybatis.source.app.mapper.UserMapper";
 
-    private SqlSessionFactory sqlSessionFactory;
+    private final SqlSessionFactory sqlSessionFactory;
 
     public UserDaoImpl(SqlSessionFactory sqlSessionFactory) {
         this.sqlSessionFactory = sqlSessionFactory;

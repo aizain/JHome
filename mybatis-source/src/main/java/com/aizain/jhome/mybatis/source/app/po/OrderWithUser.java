@@ -1,4 +1,4 @@
-package com.aizain.jhome.mybatis.source.po;
+package com.aizain.jhome.mybatis.source.app.po;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -1,9 +1,9 @@
 package com.aizain.jhome.mybatis.source.user;
 
-import com.aizain.jhome.mybatis.source.mapper.UserMapper;
-import com.aizain.jhome.mybatis.source.po.OrderWithUser;
-import com.aizain.jhome.mybatis.source.po.User;
-import com.aizain.jhome.mybatis.source.vo.UserQueryVo;
+import com.aizain.jhome.mybatis.source.app.mapper.UserMapper;
+import com.aizain.jhome.mybatis.source.app.po.OrderWithUser;
+import com.aizain.jhome.mybatis.source.app.po.User;
+import com.aizain.jhome.mybatis.source.app.vo.UserQueryVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Assertions;

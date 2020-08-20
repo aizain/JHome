@@ -24,8 +24,8 @@
 
     <!-- 别名设置 -->
     <typeAliases>
-        <package name="com.aizain.jhome.mybatis.source.po"/>
-        <package name="com.aizain.jhome.mybatis.source.vo"/>
+        <package name="com.aizain.jhome.mybatis.source.app.po"/>
+        <package name="com.aizain.jhome.mybatis.source.app.vo"/>
     </typeAliases>
 
     <!-- 环境配置（事务、数据源） -->
@@ -45,7 +45,7 @@
     <mappers>
         <mapper resource="mapper/UserMapper.xml"/>
         <!-- 注解开发使用 -->
-        <mapper class="com.aizain.jhome.mybatis.source.mapper.UserAnnotationMapper"/>
+        <mapper class="com.aizain.jhome.mybatis.source.app.mapper.UserAnnotationMapper"/>
     </mappers>
 
 </configuration>

@@ -1,8 +1,8 @@
 package com.aizain.jhome.mybatis.source.user;
 
-import com.aizain.jhome.mybatis.source.dao.UserDao;
-import com.aizain.jhome.mybatis.source.dao.UserDaoImpl;
-import com.aizain.jhome.mybatis.source.po.User;
+import com.aizain.jhome.mybatis.source.app.dao.UserDao;
+import com.aizain.jhome.mybatis.source.app.dao.UserDaoImpl;
+import com.aizain.jhome.mybatis.source.app.po.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ import static com.aizain.jhome.mybatis.source.common.MybatisContext.sqlSessionFa
  */
 class UserDaoTest {
 
-    private UserDao userDao = new UserDaoImpl(sqlSessionFactory);
+    private final UserDao userDao = new UserDaoImpl(sqlSessionFactory);
 
     @Test
     void testFindUserById() {

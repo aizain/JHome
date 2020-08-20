@@ -1,6 +1,6 @@
-package com.aizain.jhome.mybatis.source.vo;
+package com.aizain.jhome.mybatis.source.app.vo;
 
-import com.aizain.jhome.mybatis.source.po.User;
+import com.aizain.jhome.mybatis.source.app.po.User;
 import lombok.Data;
 
 import java.util.List;

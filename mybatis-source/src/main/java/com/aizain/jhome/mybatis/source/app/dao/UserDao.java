@@ -1,6 +1,6 @@
-package com.aizain.jhome.mybatis.source.dao;
+package com.aizain.jhome.mybatis.source.app.dao;
 
-import com.aizain.jhome.mybatis.source.po.User;
+import com.aizain.jhome.mybatis.source.app.po.User;
 
 /**
  * UserDao

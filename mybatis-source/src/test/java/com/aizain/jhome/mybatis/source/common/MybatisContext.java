@@ -1,6 +1,6 @@
 package com.aizain.jhome.mybatis.source.common;
 
-import com.aizain.jhome.mybatis.source.po.User;
+import com.aizain.jhome.mybatis.source.app.po.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -20,7 +20,7 @@ import java.util.UUID;
  */
 public class MybatisContext {
 
-    public static final String USER_MAPPER_PATH = "com.aizain.jhome.mybatis.source.mapper.UserMapper";
+    public static final String USER_MAPPER_PATH = "com.aizain.jhome.mybatis.source.app.mapper.UserMapper";
     private static final String NEW_USER_NAME = UUID.randomUUID().toString().replaceAll("-", "");
     public static final User newUser = createUser();
     private static final String CONFIG = "mybatis-config.xml";

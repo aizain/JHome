@@ -1,24 +1,24 @@
-package com.aizain.jhome.mybatis.source.po;
+package com.aizain.jhome.mybatis.source.app.po;
 
 import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
- * User
+ * Order
  *
  * @author Zain
- * @date 2019-05-16
+ * @date 2019-05-18
  */
 @Data
-public class User implements Serializable {
+public class Order implements Serializable {
 
     private Integer id;
-    private String name;
+    private Integer userId;
+    private Integer status;
+    private Integer number;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
-    private List<Order> orders;
 
 }

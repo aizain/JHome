@@ -2,22 +2,29 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.aizain.jhome.mybatis.source.mapper.UserMapper">
+<mapper namespace="com.aizain.jhome.mybatis.source.app.mapper.UserMapper">
 
     <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
 
-    <select useCache="true" id="findUserById" parameterType="int" resultType="com.aizain.jhome.mybatis.source.po.User">
-        select * from user where id = #{id}
+    <select useCache="true" id="findUserById" parameterType="int"
+            resultType="com.aizain.jhome.mybatis.source.app.po.User">
+        select *
+        from user
+        where id = #{id}
     </select>
 
     <select useCache="false" id="findUserListLikeName" parameterType="string"
-            resultType="com.aizain.jhome.mybatis.source.po.User">
-        select * from user where name like '%${value}%'
+            resultType="com.aizain.jhome.mybatis.source.app.po.User">
+        select *
+        from user
+        where name like '%${value}%'
     </select>
 
     <select useCache="false" id="findUserListLikeNameSafe" parameterType="string"
-            resultType="com.aizain.jhome.mybatis.source.po.User">
-        select * from user where name like CONCAT('%',#{name},'%')
+            resultType="com.aizain.jhome.mybatis.source.app.po.User">
+        select *
+        from user
+        where name like CONCAT('%', #{name}, '%')
     </select>
 
     <insert id="insertUser" parameterType="User">
@@ -77,7 +84,7 @@
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
         <association column="user_id" property="user" javaType="User"
-                     select="com.aizain.jhome.mybatis.source.mapper.UserMapper.findUserById"/>
+                     select="com.aizain.jhome.mybatis.source.app.mapper.UserMapper.findUserById"/>
     </resultMap>
     <select useCache="false" id="findOrderAndUser" resultMap="orderAndUserResultMap">
         select

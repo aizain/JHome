@@ -1,8 +1,8 @@
-package com.aizain.jhome.mybatis.source.mapper;
+package com.aizain.jhome.mybatis.source.app.mapper;
 
-import com.aizain.jhome.mybatis.source.po.OrderWithUser;
-import com.aizain.jhome.mybatis.source.po.User;
-import com.aizain.jhome.mybatis.source.vo.UserQueryVo;
+import com.aizain.jhome.mybatis.source.app.po.OrderWithUser;
+import com.aizain.jhome.mybatis.source.app.po.User;
+import com.aizain.jhome.mybatis.source.app.vo.UserQueryVo;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Result;
@@ -78,7 +78,7 @@ public interface UserAnnotationMapper {
             @Result(column = "user_id",
                     property = "user",
                     javaType = User.class,
-                    one = @One(select = "com.aizain.jhome.mybatis.source.mapper.UserAnnotationMapper.findUserById",
+                    one = @One(select = "com.aizain.jhome.mybatis.source.app.mapper.UserAnnotationMapper.findUserById",
                             fetchType = FetchType.LAZY
                     )),
     })

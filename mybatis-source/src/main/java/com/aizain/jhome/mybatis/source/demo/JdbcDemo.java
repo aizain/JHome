@@ -1,4 +1,4 @@
-package com.aizain.jhome.mybatis.source.jdbc;
+package com.aizain.jhome.mybatis.source.demo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,7 +16,10 @@ public class JdbcDemo {
 
     public static void main(String[] args) throws Exception {
         // 加载驱动
-        Class.forName("com.mysql.cj.jdbc.Driver");
+        // Driver.getOSName();
+        // Class.forName("com.mysql.cj.jdbc.Driver");
+        // System.out.println(System.getProperty("jdbc.drivers"));
+        // System.out.println(System.getProperty(String.valueOf(Reflection.getCallerClass())));
 
         // 获取数据库连接
         Properties jdbcConfig = new Properties();

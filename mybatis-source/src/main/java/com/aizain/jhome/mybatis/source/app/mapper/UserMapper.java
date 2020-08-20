@@ -1,8 +1,8 @@
-package com.aizain.jhome.mybatis.source.mapper;
+package com.aizain.jhome.mybatis.source.app.mapper;
 
-import com.aizain.jhome.mybatis.source.po.OrderWithUser;
-import com.aizain.jhome.mybatis.source.po.User;
-import com.aizain.jhome.mybatis.source.vo.UserQueryVo;
+import com.aizain.jhome.mybatis.source.app.po.OrderWithUser;
+import com.aizain.jhome.mybatis.source.app.po.User;
+import com.aizain.jhome.mybatis.source.app.vo.UserQueryVo;
 
 import java.util.List;
 
