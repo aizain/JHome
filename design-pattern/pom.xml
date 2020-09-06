@@ -6,7 +6,7 @@
 
     <parent>
         <artifactId>spring-source</artifactId>
-        <groupId>com.aizain.jhome</groupId>
+        <groupId>com.bheternal.jhome</groupId>
         <version>1.0.0</version>
     </parent>
 

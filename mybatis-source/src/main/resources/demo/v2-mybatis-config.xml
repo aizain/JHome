@@ -9,24 +9,8 @@
         <property name="jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
         <property name="jdbc.url" value="jdbc:mysql://localhost:3306/jhome?characterEncoding=utf-8"/>
         <property name="jdbc.username" value="root"/>
-        <property name="jdbc.password" value="123456"/>
+        <property name="jdbc.password" value="fc4fcafd-e86d-4fda-9a96-60147e94cc0f"/>
     </properties>
-
-    <settings>
-        <setting name="logImpl" value="SLF4J"/>
-        <!-- 延迟加载 -->
-        <setting name="lazyLoadingEnabled" value="true"/>
-        <!-- 侵入式/深度延迟加载 -->
-        <setting name="aggressiveLazyLoading" value="true"/>
-        <!-- 二级缓存 -->
-        <setting name="cacheEnabled" value="true"/>
-    </settings>
-
-    <!-- 别名设置 -->
-    <typeAliases>
-        <package name="com.bheternal.jhome.mybatis.app.po"/>
-        <package name="com.bheternal.jhome.mybatis.app.vo"/>
-    </typeAliases>
 
     <!-- 环境配置（事务、数据源） -->
     <environments default="development">
@@ -43,9 +27,7 @@
 
     <!-- mapper映射文件 -->
     <mappers>
-        <mapper resource="mapper/UserMapper.xml"/>
-        <!-- 注解开发使用 -->
-        <mapper class="com.bheternal.jhome.mybatis.app.mapper.UserAnnotationMapper"/>
+        <mapper resource="demo/V2UserMapper.xml"/>
     </mappers>
 
 </configuration>

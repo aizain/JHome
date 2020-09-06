@@ -5,11 +5,11 @@
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="UserService"
-          class="com.aizain.jhome.spring.source.service.impl.UserServiceImpl">
+          class="com.aizain.jhome.spring.source.app.service.impl.UserServiceImpl">
         <property name="UserDao" ref="UserDao"/>
     </bean>
 
-    <bean id="UserDao" class="com.aizain.jhome.spring.source.dao.impl.UserDaoImpl">
+    <bean id="UserDao" class="com.aizain.jhome.spring.source.app.dao.impl.UserDaoImpl">
     </bean>
 
 </beans>

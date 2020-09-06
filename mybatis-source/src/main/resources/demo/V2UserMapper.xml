@@ -1,0 +1,18 @@
+<mapper namespace="userMapper">
+    <select id="queryUserList"
+            parameterType="com.bheternal.jhome.mybatis.demo.MybatisV2$User"
+            resultType="com.bheternal.jhome.mybatis.demo.MybatisV2$User"
+            statementType="prepared">
+        select * from user where name = #{name}
+        <if test="sex != null and sex != ''">
+            and sex = #{sex}
+        </if>
+    </select>
+
+    <select id="queryUserByName"
+            parameterType="string"
+            resultType="com.bheternal.jhome.mybatis.demo.MybatisV2$User"
+            statementType="prepared">
+        select * from user where name = #{name}
+    </select>
+</mapper>
