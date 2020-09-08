@@ -159,7 +159,7 @@ public class MybatisV2 {
      * 创建 statement
      *
      * @param mappedStatement
-     * @param sql
+     * @param boundSql
      * @param connection
      * @return
      * @throws SQLException router
