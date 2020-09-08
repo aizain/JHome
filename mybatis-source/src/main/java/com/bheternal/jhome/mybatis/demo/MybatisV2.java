@@ -1,9 +1,9 @@
 package com.bheternal.jhome.mybatis.demo;
 
 import com.bheternal.jhome.mybatis.demo.framework.builder.xml.XmlConfigBuilder;
+import com.bheternal.jhome.mybatis.demo.framework.mapping.BoundSql;
 import com.bheternal.jhome.mybatis.demo.framework.mapping.MappedStatement;
 import com.bheternal.jhome.mybatis.demo.framework.mapping.ParameterMapping;
-import com.bheternal.jhome.mybatis.demo.framework.mapping.SqlSource;
 import com.bheternal.jhome.mybatis.demo.framework.session.Configuration;
 import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 import org.apache.ibatis.parsing.XPathParser;
@@ -51,7 +51,7 @@ public class MybatisV2 {
         // 2. 执行查询
         User query = new User();
         query.setName("测试");
-        query.setSex("测试");
+        query.setSex("男");
         List<User> users = mybatisV2.selectList("userMapper.queryUserList", query);
         System.out.printf("users: %s", users);
     }
@@ -64,13 +64,13 @@ public class MybatisV2 {
         Connection connection = getConnection();
 
         // 2. 获取执行 SQL
-        String sql = getSql(mappedStatement);
+        BoundSql boundSql = getBoundSql(mappedStatement, parameter);
 
         // 3. 创建 statement
-        Statement statement = createStatement(mappedStatement, sql, connection);
+        Statement statement = createStatement(mappedStatement, boundSql, connection);
 
         // 4. 设置参数
-        setParameters(parameter, statement, mappedStatement);
+        setParameters(parameter, statement, boundSql);
 
         // 5. 执行 statement
         ResultSet resultSet = executeQuery(statement);
@@ -91,9 +91,14 @@ public class MybatisV2 {
             ResultSetMetaData metaData = rs.getMetaData();
             for (int i = 1; i < metaData.getColumnCount() + 1; i++) {
                 String columnName = metaData.getColumnName(i);
-                Field field = resultSetType.getDeclaredField(columnName);
-                field.setAccessible(true);
-                field.set(result, rs.getObject(columnName));
+                try {
+                    Field field = resultSetType.getDeclaredField(columnName);
+                    field.setAccessible(true);
+                    field.set(result, rs.getObject(columnName));
+                } catch (NoSuchFieldException e) {
+                    // ignore
+                }
+
             }
             resultList.add(result);
         }
@@ -114,15 +119,15 @@ public class MybatisV2 {
      *
      * @param parameter
      * @param statement
-     * @param mappedStatement
-     * @param <T>             parameter handler
+     * @param boundSql
+     * @param <T>       parameter handler
      * @see org.apache.ibatis.executor.parameter.ParameterHandler
      * @see org.apache.ibatis.scripting.defaults.DefaultParameterHandler
      * <p>
      * type handler
      * @see org.apache.ibatis.type.BaseTypeHandler
      */
-    private <T> void setParameters(T parameter, Statement statement, MappedStatement mappedStatement) throws SQLException, NoSuchFieldException, IllegalAccessException {
+    private <T> void setParameters(T parameter, Statement statement, BoundSql boundSql) throws SQLException, NoSuchFieldException, IllegalAccessException {
         if (!(statement instanceof PreparedStatement)) {
             return;
         }
@@ -135,9 +140,8 @@ public class MybatisV2 {
             ps.setObject(1, parameter);
         } else {
 
-            // TODO 解析参数列表
-            SqlSource sqlSource = mappedStatement.getSqlSource();
-            List<ParameterMapping> parameterMappings = new LinkedList<>();
+            // 解析参数列表
+            List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
 
             for (int i = 0; i < parameterMappings.size(); i++) {
                 ParameterMapping parameterMapping = parameterMappings.get(i);
@@ -166,20 +170,20 @@ public class MybatisV2 {
      * @see org.apache.ibatis.executor.statement.PreparedStatementHandler
      * @see org.apache.ibatis.executor.statement.CallableStatementHandler
      */
-    private Statement createStatement(MappedStatement mappedStatement, String sql, Connection connection) throws SQLException {
+    private Statement createStatement(MappedStatement mappedStatement, BoundSql boundSql, Connection connection) throws SQLException {
         String statementType = mappedStatement.getStatementType();
         switch (statementType) {
             case "prepared":
-                return connection.prepareStatement(sql);
+                return connection.prepareStatement(boundSql.getSql());
             case "callable":
-                return connection.prepareCall(sql);
+                return connection.prepareCall(boundSql.getSql());
             default:
                 return connection.createStatement();
         }
     }
 
-    private String getSql(MappedStatement mappedStatement) {
-        return null;
+    private BoundSql getBoundSql(MappedStatement mappedStatement, Object parameter) {
+        return mappedStatement.getSqlSource().getBoundSql(parameter);
     }
 
     private Connection getConnection() throws SQLException {
@@ -248,6 +252,7 @@ public class MybatisV2 {
     }
 
     public static class User {
+        private Long id;
         private String name;
         private String sex;
 
@@ -265,6 +270,23 @@ public class MybatisV2 {
 
         public void setSex(String sex) {
             this.sex = sex;
+        }
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
+
+        @Override
+        public String toString() {
+            return "User{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", sex='" + sex + '\'' +
+                    '}';
         }
     }
 

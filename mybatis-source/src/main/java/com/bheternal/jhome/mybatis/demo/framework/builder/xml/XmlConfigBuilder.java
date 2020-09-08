@@ -50,7 +50,7 @@ public class XmlConfigBuilder {
     private void mapperElement(XNode mappers) throws Exception {
         XNode mapper = mappers.evalNode("mapper");
         String resource = mapper.getStringAttribute("resource");
-        try (InputStream is = getClass().getResourceAsStream(resource)) {
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream(resource)) {
             XmlMapperBuilder mapperBuilder = new XmlMapperBuilder(new XPathParser(is), configuration);
             mapperBuilder.parse();
         }

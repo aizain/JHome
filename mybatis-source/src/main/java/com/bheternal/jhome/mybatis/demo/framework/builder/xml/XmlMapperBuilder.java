@@ -40,7 +40,7 @@ public class XmlMapperBuilder {
     /**
      * 解析 statement
      *
-     * @param node
+     * @param context
      * @param namespace
      * @see org.apache.ibatis.builder.xml.XMLStatementBuilder
      * @see TypeAliasRegistry
@@ -79,13 +79,14 @@ public class XmlMapperBuilder {
      *
      * @param configuration
      * @param context
-     * @param parameterTypeClass
+     * @param parameterType
      * @return
      * @see org.apache.ibatis.scripting.xmltags.XMLLanguageDriver
      * @see org.apache.ibatis.scripting.xmltags.XMLScriptBuilder
      */
-    private SqlSource createSqlSource(Configuration configuration, XNode context, Class<?> parameterTypeClass) {
-        return null;
+    private SqlSource createSqlSource(Configuration configuration, XNode context, Class<?> parameterType) {
+        XmlScriptBuilder xmlScriptBuilder = new XmlScriptBuilder(configuration, context, parameterType);
+        return xmlScriptBuilder.parseScriptNode();
     }
 
 
