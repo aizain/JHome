@@ -44,6 +44,7 @@ public class XmlMapperBuilder {
      * @param namespace
      * @see org.apache.ibatis.builder.xml.XMLStatementBuilder
      * @see TypeAliasRegistry
+     * @see com.bheternal.jhome.mybatis.demo.framework3.builder.xml.XmlStatementBuilder
      */
     private void parseStatement(XNode context, String namespace) throws ClassNotFoundException {
 
