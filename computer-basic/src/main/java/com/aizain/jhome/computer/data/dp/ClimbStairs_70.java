@@ -6,7 +6,7 @@ import com.aizain.jhome.computer.data.list.ClimbStairs;
  * ClimbStairs_70
  * 70. 爬楼梯
  * <p>
- * 假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
+ * 假设你正在爬楼梯。需要 n阶你才能到达楼顶。
  * 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
  * 注意：给定 n 是一个正整数。
  * <p>
