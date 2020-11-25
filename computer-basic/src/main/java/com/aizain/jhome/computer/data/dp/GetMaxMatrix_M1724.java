@@ -105,6 +105,43 @@ public class GetMaxMatrix_M1724 {
         return maxMatrix;
     }
 
+    private int[] dp1FastCleanSolution(int[][] matrix) {
+        int h = matrix.length;
+        int w = matrix[0].length;
+        int max = Integer.MIN_VALUE;
+        int[] maxMatrix = new int[4];
+        for (int h1 = 0; h1 < h; h1++) {
+            int[] hdp = new int[w];
+            Arrays.fill(hdp, 0);
+            for (int h2 = h1; h2 < h; h2++) {
+                int[] dp = new int[w];
+                int wTmp = 0;
+                for (int w1 = 0; w1 < w; w1++) {
+                    hdp[w1] += matrix[h2][w1];
+                    dp[w1] = hdp[w1];
+                    if (w1 > 0) {
+                        int dpSum = dp[w1] + dp[w1 - 1];
+                        if (dpSum > dp[w1]) {
+                            dp[w1] = dpSum;
+                        } else {
+                            wTmp = w1;
+                        }
+                    }
+
+                    if (dp[w1] > max) {
+                        max = dp[w1];
+                        maxMatrix[0] = h1;
+                        maxMatrix[1] = wTmp;
+                        maxMatrix[2] = h2;
+                        maxMatrix[3] = w1;
+                    }
+                }
+            }
+        }
+
+        return maxMatrix;
+    }
+
     /**
      * 动态规划 + 最大子序和
      * <p>
