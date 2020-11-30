@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>spring-source</artifactId>
         <groupId>com.bheternal.jhome</groupId>
-        <version>1.0.0</version>
+        <artifactId>lang</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>design-pattern</artifactId>

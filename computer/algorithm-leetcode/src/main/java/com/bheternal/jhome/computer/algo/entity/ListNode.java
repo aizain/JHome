@@ -3,7 +3,7 @@ package com.bheternal.jhome.computer.algo.entity;
 /**
  * ListNode
  * 链表对象
- * <p>
+ *
  * * Definition for singly-linked list.
  * * public class ListNode {
  * * int val;
