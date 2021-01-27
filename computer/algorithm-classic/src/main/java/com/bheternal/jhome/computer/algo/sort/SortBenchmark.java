@@ -13,6 +13,7 @@ public class SortBenchmark {
         SortTool.run(BubbleSort.class, arr);
         SortTool.run(SelectionSort.class, arr);
         SortTool.run(InsertionSort.class, arr);
+        SortTool.run(ShellSort.class, arr);
 
     }
 

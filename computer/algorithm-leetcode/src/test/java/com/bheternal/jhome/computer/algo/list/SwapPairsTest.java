@@ -1,6 +1,6 @@
 package com.bheternal.jhome.computer.algo.list;
 
-import com.aizain.jhome.computer.data.entity.ListNode;
+ import com.bheternal.jhome.computer.algo.entity.ListNode;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

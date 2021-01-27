@@ -1,6 +1,5 @@
 package com.bheternal.jhome.computer.algo.dp;
 
-import com.aizain.jhome.computer.data.list.ClimbStairs;
 
 /**
  * ClimbStairs_70
@@ -31,7 +30,6 @@ import com.aizain.jhome.computer.data.list.ClimbStairs;
  *
  * @author Zain
  * @date 2020/6/4
- * @see ClimbStairs
  */
 public class ClimbStairs_70 {
 

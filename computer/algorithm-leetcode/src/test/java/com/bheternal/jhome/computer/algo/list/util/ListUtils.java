@@ -1,6 +1,6 @@
 package com.bheternal.jhome.computer.algo.list.util;
 
-import com.aizain.jhome.computer.data.entity.ListNode;
+ import com.bheternal.jhome.computer.algo.entity.ListNode;
 import org.slf4j.Logger;
 
 /**
